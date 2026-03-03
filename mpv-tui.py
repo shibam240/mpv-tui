@@ -320,7 +320,7 @@ class SpotiTUI:
         self.header_win.attron(curses.color_pair(2))
         self.header_win.addstr(1, (w - len(subtitle)) // 2, subtitle)
 
-        self.header_win.wnoutrefresh()
+        self.header_win.noutrefresh()
 
     def draw_navigation(self):
         """Draw navigation tabs"""
@@ -349,7 +349,7 @@ class SpotiTUI:
         instructions = "Click tabs or use 1/2/3 keys to switch views"
         self.nav_win.addstr(1, 2, instructions, curses.color_pair(2))
 
-        self.nav_win.wnoutrefresh()
+        self.nav_win.noutrefresh()
 
     def draw_search_bar(self):
         """Draw the search bar"""
@@ -379,7 +379,7 @@ class SpotiTUI:
         if len(instructions) < w - 4:
             self.search_win.addstr(2, 2, instructions[: w - 4], curses.color_pair(2))
 
-        self.search_win.wnoutrefresh()
+        self.search_win.noutrefresh()
 
     def draw_results(self):
         """Draw search results or history"""
@@ -392,7 +392,7 @@ class SpotiTUI:
         else:  # liked
             self.draw_liked()
 
-        self.main_win.wnoutrefresh()
+        self.main_win.noutrefresh()
 
     def draw_search_results(self):
         """Draw search results"""
@@ -575,7 +575,7 @@ class SpotiTUI:
         else:
             self.player_win.addstr(1, 2, "♪ Ready to play music", curses.color_pair(2))
 
-        self.player_win.wnoutrefresh()
+        self.player_win.noutrefresh()
 
     def search_music(self, query: str):
         """Search for music"""
@@ -587,7 +587,7 @@ class SpotiTUI:
 
         self.main_win.erase()
         self.main_win.addstr(2, 2, f"Searching for '{query}'...", curses.color_pair(1))
-        self.main_win.wnoutrefresh()
+        self.main_win.noutrefresh()
         curses.doupdate()
 
         results = self.searcher.search(query)
@@ -598,7 +598,7 @@ class SpotiTUI:
             self.main_win.addstr(
                 2, 2, "No results found. Try a different search.", curses.color_pair(5)
             )
-            self.main_win.wnoutrefresh()
+            self.main_win.noutrefresh()
 
     def get_current_list(self):
         """Get current track list based on view"""
@@ -622,7 +622,7 @@ class SpotiTUI:
         self.main_win.addstr(
             self.selected_index + 2, w - 15, "Loading...", curses.color_pair(1)
         )
-        self.main_win.wnoutrefresh()
+        self.main_win.noutrefresh()
         curses.doupdate()
 
         # Add to history
